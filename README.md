@@ -5,8 +5,8 @@ An agent that answers business questions about the
 by exploring the schema, writing SQL, running it, and fixing its own errors,
 plus an evaluation set to measure how well it does.
 
-> Status: evaluation set and scorer done; agent skeleton next, then the
-> silent-error checker (see `CLAUDE.md`).
+> Status: evaluation set, scorer, agent skeleton and baseline done; the tool-using
+> agent is next, then the silent-error checker (see `CLAUDE.md`).
 
 ## Layout
 
@@ -30,6 +30,15 @@ python eval/evaluate.py score data/olist.duckdb eval/example_predictions.jsonl
 ```
 
 Predictions are one JSON object per line: `{"id": "m03", "sql": "SELECT ..."}`.
+
+To run the agent, install the package (`pip install -r requirements.txt` does it),
+copy `.env.example` to `.env`, set `LLM_API_KEY` (or `ANTHROPIC_API_KEY`), then:
+
+```bash
+python scripts/run_eval.py --agent baseline       # dev split; writes runs/<run_id>/
+streamlit run app/streamlit_app.py                # ask questions in the browser
+pytest                                            # no API key or network needed
+```
 
 ## How scoring works
 

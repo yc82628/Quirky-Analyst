@@ -101,8 +101,14 @@ def build(db_path):
     print(f"Wrote {len(expected)} expected results to {EXPECTED_FILE.name}")
 
 
-def score(db_path, predictions_path):
+def score(db_path, predictions_path, ids=None):
+    """Print the report and return the numbers, incl. per-item outcomes ("pass" or the reason).
+
+    ids limits scoring to a subset (e.g. the dev or holdout split).
+    """
     items = {i["id"]: i for i in load_items() if i["difficulty"] != "clarify"}
+    if ids is not None:
+        items = {qid: item for qid, item in items.items() if qid in set(ids)}
     expected = json.loads(EXPECTED_FILE.read_text())
     preds = {}
     for line in Path(predictions_path).read_text().splitlines():
@@ -111,7 +117,7 @@ def score(db_path, predictions_path):
             preds[p["id"]] = p.get("sql")
 
     con = duckdb.connect(db_path, read_only=True)
-    by_diff, by_tag, failures = defaultdict(Counter), defaultdict(Counter), []
+    by_diff, by_tag, failures, outcomes = defaultdict(Counter), defaultdict(Counter), [], {}
     for qid, item in items.items():
         sql = preds.get(qid)
         try:
@@ -126,13 +132,15 @@ def score(db_path, predictions_path):
             by_tag[tag][ok] += 1
         if not ok:
             failures.append((qid, reason))
+        outcomes[qid] = "pass" if ok else reason
 
     total = sum(c[True] for c in by_diff.values())
     n = sum(sum(c.values()) for c in by_diff.values())
     print(f"Execution accuracy: {total}/{n} = {100 * total / n:.1f}%\n")
     for d in ("easy", "medium", "hard"):
         c = by_diff[d]
-        print(f"  {d:7s} {c[True]:>3}/{sum(c.values()):<3}")
+        if c:
+            print(f"  {d:7s} {c[True]:>3}/{sum(c.values()):<3}")
     print("\nWeakest tags:")
     worst = sorted(by_tag.items(), key=lambda kv: kv[1][True] / sum(kv[1].values()))[:8]
     for tag, c in worst:
@@ -141,6 +149,18 @@ def score(db_path, predictions_path):
         print("\nFailures:")
         for qid, reason in failures:
             print(f"  {qid}: {reason}")
+
+    def split(counter):
+        return {"correct": counter[True], "total": sum(counter.values())}
+
+    return {
+        "correct": total,
+        "total": n,
+        "accuracy": total / n if n else 0.0,
+        "by_difficulty": {d: split(c) for d, c in by_diff.items()},
+        "by_tag": {t: split(c) for t, c in sorted(by_tag.items())},
+        "outcomes": outcomes,
+    }
 
 
 if __name__ == "__main__":

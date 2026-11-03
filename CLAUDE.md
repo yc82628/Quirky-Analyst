@@ -18,9 +18,13 @@ much each agent component improves execution accuracy on `eval/eval_set.yaml`.
 - Every gold query has been run; `python eval/evaluate.py score data/olist.duckdb eval/example_predictions.jsonl`
   must print `66/70 = 94.3%`.
 
-## First task: scaffold the skeleton
-Build the structure and interfaces with working stubs, then the baseline. Don't
-build the full agent in one pass.
+## First task: scaffold the skeleton (done)
+Structure, interfaces and the baseline are in place; `tool_agent.py` is a stub
+and is the next thing to build. `eval/holdout.txt` holds 15 ids (seed 20261103);
+`run_eval.py` refuses them without `--split holdout --final`. `evaluate.score()`
+takes an optional `ids` subset and returns the numbers plus per-item outcomes.
+LLM: Anthropic SDK, default `claude-opus-5-5` at effort `high`, with server-side
+refusal fallback on; the serving model is recorded per call.
 
 ```
 src/text2sql/
