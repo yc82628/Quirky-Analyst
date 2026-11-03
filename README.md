@@ -5,8 +5,8 @@ An agent that answers business questions about the
 by exploring the schema, writing SQL, running it, and fixing its own errors,
 plus an evaluation set to measure how well it does.
 
-> Status: evaluation set, scorer, agent skeleton and baseline done; the tool-using
-> agent is next, then the silent-error checker (see `CLAUDE.md`).
+> Status: evaluation set, scorer, baseline and tool-using agent done; first real
+> runs are next, then the silent-error checker (see `CLAUDE.md`).
 
 ## Layout
 
@@ -36,6 +36,7 @@ copy `.env.example` to `.env`, set `LLM_API_KEY` (or `ANTHROPIC_API_KEY`), then:
 
 ```bash
 python scripts/run_eval.py --agent baseline       # dev split; writes runs/<run_id>/
+python scripts/run_eval.py --agent tools          # or tools+metrics
 streamlit run app/streamlit_app.py                # ask questions in the browser
 pytest                                            # no API key or network needed
 ```

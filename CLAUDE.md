@@ -19,8 +19,10 @@ much each agent component improves execution accuracy on `eval/eval_set.yaml`.
   must print `66/70 = 94.3%`.
 
 ## First task: scaffold the skeleton (done)
-Structure, interfaces and the baseline are in place; `tool_agent.py` is a stub
-and is the next thing to build. `eval/holdout.txt` holds 15 ids (seed 20261103);
+Structure, interfaces, the baseline and `tool_agent.py` are in place. The tool
+agent counts a revision as any run_sql after one that errored or returned no rows,
+stops after `max_retries` revisions or 25 model calls, and refuses the `examples`
+and `checker` configs until those exist. `eval/holdout.txt` holds 15 ids (seed 20261103);
 `run_eval.py` refuses them without `--split holdout --final`. `evaluate.score()`
 takes an optional `ids` subset and returns the numbers plus per-item outcomes.
 LLM: Anthropic SDK, default `claude-opus-5-5` at effort `high`, with server-side
