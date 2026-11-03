@@ -1,0 +1,58 @@
+# Business metric definitions for the Olist dataset.
+# The agent retrieves these so "revenue" or "customer" means the same thing
+# every time. The gold SQL in eval_set.yaml follows these definitions exactly.
+
+order_date:
+  definition: The order's purchase time, orders.order_purchase_timestamp.
+  note: Use this for all "when" questions (per month, per year, per weekday) unless the question says otherwise.
+
+full_data_period:
+  definition: January 2017 to August 2018 inclusive.
+  note: 2016 and September/October 2018 have only a handful of orders each, so trend questions should usually stay inside this window.
+
+revenue:
+  definition: Sum of order_items.price for orders whose status is NOT 'canceled' or 'unavailable'.
+  excludes: Freight (order_items.freight_value) and payment fees.
+  sql: |
+    SELECT SUM(oi.price)
+    FROM order_items oi
+    JOIN orders o USING (order_id)
+    WHERE o.order_status NOT IN ('canceled', 'unavailable')
+
+average_order_value:
+  definition: Revenue divided by the number of distinct orders that contribute to revenue.
+
+customer:
+  definition: A distinct customers.customer_unique_id.
+  warning: customers.customer_id is a new id for every order, so counting customer_id counts orders, not people.
+
+repeat_customer:
+  definition: A customer_unique_id with 2 or more orders (any status).
+
+delivered_order:
+  definition: order_status = 'delivered' AND order_delivered_customer_date IS NOT NULL.
+
+delivery_time_days:
+  definition: (order_delivered_customer_date - order_purchase_timestamp) in fractional days, for delivered orders.
+  sql: (epoch(order_delivered_customer_date) - epoch(order_purchase_timestamp)) / 86400.0
+
+late_delivery:
+  definition: A delivered order whose delivery DATE is after its estimated delivery DATE.
+  sql: CAST(order_delivered_customer_date AS DATE) > CAST(order_estimated_delivery_date AS DATE)
+
+days_late:
+  definition: Delivery date minus estimated delivery date, in whole days (negative = early).
+  sql: date_diff('day', CAST(order_estimated_delivery_date AS DATE), CAST(order_delivered_customer_date AS DATE))
+
+category_name:
+  definition: English name from category_translation, falling back to the Portuguese name when no translation exists (2 categories have none).
+  sql: COALESCE(t.product_category_name_english, p.product_category_name)
+
+review_score_of_order:
+  definition: Average review_score of all reviews for that order (a few orders have more than one review).
+
+rates_and_percentages:
+  definition: Expressed as a percentage from 0 to 100, rounded to 2 decimals.
+
+money:
+  definition: Brazilian reais (BRL), rounded to 2 decimals.

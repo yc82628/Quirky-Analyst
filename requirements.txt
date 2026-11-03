@@ -1,0 +1,7 @@
+duckdb>=1.1
+pyyaml>=6.0
+python-dotenv>=1.0
+pandas>=2.2
+streamlit>=1.38
+pytest>=8.0
+# LLM SDK: add the one you use, e.g. anthropic or openai

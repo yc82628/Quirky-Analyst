@@ -1,0 +1,1252 @@
+{
+ "e01": {
+  "columns": [
+   "orders"
+  ],
+  "rows": [
+   [
+    99441
+   ]
+  ]
+ },
+ "e02": {
+  "columns": [
+   "customers"
+  ],
+  "rows": [
+   [
+    96096
+   ]
+  ]
+ },
+ "e03": {
+  "columns": [
+   "sellers"
+  ],
+  "rows": [
+   [
+    3095
+   ]
+  ]
+ },
+ "e04": {
+  "columns": [
+   "canceled_orders"
+  ],
+  "rows": [
+   [
+    625
+   ]
+  ]
+ },
+ "e05": {
+  "columns": [
+   "order_status",
+   "orders"
+  ],
+  "rows": [
+   [
+    "delivered",
+    96478
+   ],
+   [
+    "shipped",
+    1107
+   ],
+   [
+    "canceled",
+    625
+   ],
+   [
+    "unavailable",
+    609
+   ],
+   [
+    "invoiced",
+    314
+   ],
+   [
+    "processing",
+    301
+   ],
+   [
+    "created",
+    5
+   ],
+   [
+    "approved",
+    2
+   ]
+  ]
+ },
+ "e06": {
+  "columns": [
+   "first_order",
+   "last_order"
+  ],
+  "rows": [
+   [
+    "2016-09-04 21:15:19",
+    "2018-10-17 17:30:18"
+   ]
+  ]
+ },
+ "e07": {
+  "columns": [
+   "products_without_category"
+  ],
+  "rows": [
+   [
+    610
+   ]
+  ]
+ },
+ "e08": {
+  "columns": [
+   "avg_review_score"
+  ],
+  "rows": [
+   [
+    4.09
+   ]
+  ]
+ },
+ "e09": {
+  "columns": [
+   "pct_five_star"
+  ],
+  "rows": [
+   [
+    57.78
+   ]
+  ]
+ },
+ "e10": {
+  "columns": [
+   "payment_type"
+  ],
+  "rows": [
+   [
+    "credit_card"
+   ]
+  ]
+ },
+ "e11": {
+  "columns": [
+   "avg_installments"
+  ],
+  "rows": [
+   [
+    3.51
+   ]
+  ]
+ },
+ "e12": {
+  "columns": [
+   "max_installments"
+  ],
+  "rows": [
+   [
+    24
+   ]
+  ]
+ },
+ "e13": {
+  "columns": [
+   "customer_state"
+  ],
+  "rows": [
+   [
+    "SP"
+   ]
+  ]
+ },
+ "e14": {
+  "columns": [
+   "seller_state",
+   "sellers"
+  ],
+  "rows": [
+   [
+    "SP",
+    1849
+   ],
+   [
+    "PR",
+    349
+   ],
+   [
+    "MG",
+    244
+   ],
+   [
+    "SC",
+    190
+   ],
+   [
+    "RJ",
+    171
+   ]
+  ]
+ },
+ "e15": {
+  "columns": [
+   "avg_weight_g"
+  ],
+  "rows": [
+   [
+    2276.47
+   ]
+  ]
+ },
+ "e16": {
+  "columns": [
+   "orders_2017"
+  ],
+  "rows": [
+   [
+    45101
+   ]
+  ]
+ },
+ "e17": {
+  "columns": [
+   "avg_item_price"
+  ],
+  "rows": [
+   [
+    120.65
+   ]
+  ]
+ },
+ "e18": {
+  "columns": [
+   "max_item_price"
+  ],
+  "rows": [
+   [
+    6735
+   ]
+  ]
+ },
+ "e19": {
+  "columns": [
+   "reviews_with_comment"
+  ],
+  "rows": [
+   [
+    40968
+   ]
+  ]
+ },
+ "e20": {
+  "columns": [
+   "late_orders"
+  ],
+  "rows": [
+   [
+    6534
+   ]
+  ]
+ },
+ "m01": {
+  "columns": [
+   "revenue"
+  ],
+  "rows": [
+   [
+    13494400.74
+   ]
+  ]
+ },
+ "m02": {
+  "columns": [
+   "year",
+   "revenue"
+  ],
+  "rows": [
+   [
+    2017,
+    6108492.27
+   ],
+   [
+    2018,
+    7341182.41
+   ]
+  ]
+ },
+ "m03": {
+  "columns": [
+   "category",
+   "revenue"
+  ],
+  "rows": [
+   [
+    "health_beauty",
+    1255695.13
+   ],
+   [
+    "watches_gifts",
+    1198185.21
+   ],
+   [
+    "bed_bath_table",
+    1035964.06
+   ],
+   [
+    "sports_leisure",
+    979740.92
+   ],
+   [
+    "computers_accessories",
+    904322.02
+   ],
+   [
+    "furniture_decor",
+    727465.05
+   ],
+   [
+    "housewares",
+    626825.8
+   ],
+   [
+    "cool_stuff",
+    620770.49
+   ],
+   [
+    "auto",
+    586585.73
+   ],
+   [
+    "garden_tools",
+    481009.94
+   ]
+  ]
+ },
+ "m04": {
+  "columns": [
+   "category",
+   "items_sold"
+  ],
+  "rows": [
+   [
+    "bed_bath_table",
+    11115
+   ],
+   [
+    "health_beauty",
+    9670
+   ],
+   [
+    "sports_leisure",
+    8641
+   ],
+   [
+    "furniture_decor",
+    8334
+   ],
+   [
+    "computers_accessories",
+    7827
+   ],
+   [
+    "housewares",
+    6964
+   ],
+   [
+    "watches_gifts",
+    5991
+   ],
+   [
+    "telephony",
+    4545
+   ],
+   [
+    "garden_tools",
+    4347
+   ],
+   [
+    "auto",
+    4235
+   ]
+  ]
+ },
+ "m05": {
+  "columns": [
+   "avg_delivery_days"
+  ],
+  "rows": [
+   [
+    12.56
+   ]
+  ]
+ },
+ "m06": {
+  "columns": [
+   "customer_state",
+   "avg_delivery_days"
+  ],
+  "rows": [
+   [
+    "RR",
+    29.39
+   ],
+   [
+    "AP",
+    27.19
+   ],
+   [
+    "AM",
+    26.43
+   ],
+   [
+    "AL",
+    24.54
+   ],
+   [
+    "PA",
+    23.77
+   ]
+  ]
+ },
+ "m07": {
+  "columns": [
+   "pct_late"
+  ],
+  "rows": [
+   [
+    6.77
+   ]
+  ]
+ },
+ "m08": {
+  "columns": [
+   "delivery",
+   "avg_review_score"
+  ],
+  "rows": [
+   [
+    "late",
+    2.27
+   ],
+   [
+    "on_time",
+    4.29
+   ]
+  ]
+ },
+ "m09": {
+  "columns": [
+   "month",
+   "orders"
+  ],
+  "rows": [
+   [
+    1,
+    800
+   ],
+   [
+    2,
+    1780
+   ],
+   [
+    3,
+    2682
+   ],
+   [
+    4,
+    2404
+   ],
+   [
+    5,
+    3700
+   ],
+   [
+    6,
+    3245
+   ],
+   [
+    7,
+    4026
+   ],
+   [
+    8,
+    4331
+   ],
+   [
+    9,
+    4285
+   ],
+   [
+    10,
+    4631
+   ],
+   [
+    11,
+    7544
+   ],
+   [
+    12,
+    5673
+   ]
+  ]
+ },
+ "m10": {
+  "columns": [
+   "avg_order_value"
+  ],
+  "rows": [
+   [
+    137.42
+   ]
+  ]
+ },
+ "m11": {
+  "columns": [
+   "seller_id",
+   "revenue"
+  ],
+  "rows": [
+   [
+    "4869f7a5dfa277a7dca6462dcf3b52b2",
+    229237.63
+   ],
+   [
+    "53243585a1d6dc2643021fd1853d8905",
+    222776.05
+   ],
+   [
+    "4a3ca9315b744ce9f8e9374361493884",
+    200326.12
+   ],
+   [
+    "fa1c13f2614d7b5c4749cbc52fecda94",
+    192842.13
+   ],
+   [
+    "7c67e1448b00f6e969d365cea6b010ab",
+    187923.89
+   ]
+  ]
+ },
+ "m12": {
+  "columns": [
+   "sellers"
+  ],
+  "rows": [
+   [
+    236
+   ]
+  ]
+ },
+ "m13": {
+  "columns": [
+   "customer_state"
+  ],
+  "rows": [
+   [
+    "RR"
+   ]
+  ]
+ },
+ "m14": {
+  "columns": [
+   "multi_item_orders"
+  ],
+  "rows": [
+   [
+    9803
+   ]
+  ]
+ },
+ "m15": {
+  "columns": [
+   "pct_multi_type"
+  ],
+  "rows": [
+   [
+    2.26
+   ]
+  ]
+ },
+ "m16": {
+  "columns": [
+   "payment_type",
+   "total_paid"
+  ],
+  "rows": [
+   [
+    "credit_card",
+    12542084.19
+   ],
+   [
+    "boleto",
+    2869361.27
+   ],
+   [
+    "voucher",
+    379436.87
+   ],
+   [
+    "debit_card",
+    217989.79
+   ],
+   [
+    "not_defined",
+    0
+   ]
+  ]
+ },
+ "m17": {
+  "columns": [
+   "repeat_customers"
+  ],
+  "rows": [
+   [
+    2997
+   ]
+  ]
+ },
+ "m18": {
+  "columns": [
+   "customer_city"
+  ],
+  "rows": [
+   [
+    "sao paulo"
+   ]
+  ]
+ },
+ "m19": {
+  "columns": [
+   "categories"
+  ],
+  "rows": [
+   [
+    72
+   ]
+  ]
+ },
+ "m20": {
+  "columns": [
+   "avg_photos"
+  ],
+  "rows": [
+   [
+    1.62
+   ]
+  ]
+ },
+ "m21": {
+  "columns": [
+   "pct_boleto"
+  ],
+  "rows": [
+   [
+    19.9
+   ]
+  ]
+ },
+ "m22": {
+  "columns": [
+   "revenue"
+  ],
+  "rows": [
+   [
+    1003862.14
+   ]
+  ]
+ },
+ "m23": {
+  "columns": [
+   "weekday"
+  ],
+  "rows": [
+   [
+    "Monday"
+   ]
+  ]
+ },
+ "m24": {
+  "columns": [
+   "hour"
+  ],
+  "rows": [
+   [
+    16
+   ]
+  ]
+ },
+ "m25": {
+  "columns": [
+   "avg_review_score"
+  ],
+  "rows": [
+   [
+    4.17
+   ]
+  ]
+ },
+ "h01": {
+  "columns": [
+   "month",
+   "revenue",
+   "mom_growth_pct"
+  ],
+  "rows": [
+   [
+    "2018-01",
+    945456.29,
+    27.39
+   ],
+   [
+    "2018-02",
+    837895.43,
+    -11.38
+   ],
+   [
+    "2018-03",
+    981051.06,
+    17.09
+   ],
+   [
+    "2018-04",
+    993592.98,
+    1.28
+   ],
+   [
+    "2018-05",
+    992871.75,
+    -0.07
+   ],
+   [
+    "2018-06",
+    863265.53,
+    -13.05
+   ],
+   [
+    "2018-07",
+    878044.27,
+    1.71
+   ],
+   [
+    "2018-08",
+    848860.1,
+    -3.32
+   ]
+  ]
+ },
+ "h02": {
+  "columns": [
+   "repeat_rate_pct"
+  ],
+  "rows": [
+   [
+    3.12
+   ]
+  ]
+ },
+ "h03": {
+  "columns": [
+   "category",
+   "pct_of_revenue"
+  ],
+  "rows": [
+   [
+    "health_beauty",
+    9.31
+   ],
+   [
+    "watches_gifts",
+    8.88
+   ],
+   [
+    "bed_bath_table",
+    7.68
+   ],
+   [
+    "sports_leisure",
+    7.26
+   ],
+   [
+    "computers_accessories",
+    6.7
+   ]
+  ]
+ },
+ "h04": {
+  "columns": [
+   "year",
+   "category",
+   "revenue"
+  ],
+  "rows": [
+   [
+    2017,
+    "bed_bath_table",
+    497970.94
+   ],
+   [
+    2017,
+    "watches_gifts",
+    486519.02
+   ],
+   [
+    2017,
+    "health_beauty",
+    481142.73
+   ],
+   [
+    2018,
+    "health_beauty",
+    770002.81
+   ],
+   [
+    2018,
+    "watches_gifts",
+    708305.95
+   ],
+   [
+    2018,
+    "bed_bath_table",
+    537514.13
+   ]
+  ]
+ },
+ "h05": {
+  "columns": [
+   "month",
+   "cumulative_revenue"
+  ],
+  "rows": [
+   [
+    1,
+    120098.27
+   ],
+   [
+    2,
+    365057.62
+   ],
+   [
+    3,
+    733398.94
+   ],
+   [
+    4,
+    1087241.92
+   ],
+   [
+    5,
+    1590401.11
+   ],
+   [
+    6,
+    2020317.72
+   ],
+   [
+    7,
+    2512605.02
+   ],
+   [
+    8,
+    3080850.81
+   ],
+   [
+    9,
+    3702266.72
+   ],
+   [
+    10,
+    4362446.34
+   ],
+   [
+    11,
+    5366308.48
+   ],
+   [
+    12,
+    6108492.27
+   ]
+  ]
+ },
+ "h06": {
+  "columns": [
+   "seller_id",
+   "avg_review_score",
+   "reviewed_orders"
+  ],
+  "rows": [
+   [
+    "1ca7077d890b907f89be8c954a02686a",
+    2.33,
+    114
+   ],
+   [
+    "2eb70248d66e0e3ef83659f71b244378",
+    2.69,
+    198
+   ],
+   [
+    "54965bbe3e4f07ae045b90b0b8541f52",
+    3,
+    74
+   ],
+   [
+    "a49928bcdf77c55c6d6e05e09a9b4ca5",
+    3.01,
+    98
+   ],
+   [
+    "972d0f9cf61b499a4812cf0bfa3ad3c4",
+    3.03,
+    79
+   ]
+  ]
+ },
+ "h07": {
+  "columns": [
+   "bucket",
+   "avg_review_score",
+   "orders"
+  ],
+  "rows": [
+   [
+    "1 early",
+    4.29,
+    88163
+   ],
+   [
+    "2 same day",
+    4.04,
+    1280
+   ],
+   [
+    "3 1-3 days late",
+    3.29,
+    1852
+   ],
+   [
+    "4 4-7 days late",
+    2.11,
+    1748
+   ],
+   [
+    "5 >7 days late",
+    1.7,
+    2781
+   ]
+  ]
+ },
+ "h08": {
+  "columns": [
+   "customer_state",
+   "pct_late"
+  ],
+  "rows": [
+   [
+    "MA",
+    17.43
+   ]
+  ]
+ },
+ "h09": {
+  "columns": [
+   "avg_days_to_second_order"
+  ],
+  "rows": [
+   [
+    80.35
+   ]
+  ]
+ },
+ "h10": {
+  "columns": [
+   "pct_same_state"
+  ],
+  "rows": [
+   [
+    31.2
+   ]
+  ]
+ },
+ "h11": {
+  "columns": [
+   "customer_state",
+   "median_delivery_days"
+  ],
+  "rows": [
+   [
+    "SP",
+    7.21
+   ],
+   [
+    "MG",
+    10.31
+   ],
+   [
+    "PR",
+    10.43
+   ],
+   [
+    "DF",
+    11.36
+   ],
+   [
+    "RJ",
+    12.04
+   ]
+  ]
+ },
+ "h12": {
+  "columns": [
+   "category"
+  ],
+  "rows": [
+   [
+    "electronics"
+   ]
+  ]
+ },
+ "h13": {
+  "columns": [
+   "returned_within_90_days"
+  ],
+  "rows": [
+   [
+    140
+   ]
+  ]
+ },
+ "h14": {
+  "columns": [
+   "installment_bucket",
+   "avg_payment_value"
+  ],
+  "rows": [
+   [
+    "1 single",
+    95.87
+   ],
+   [
+    "2 2-6",
+    153.79
+   ],
+   [
+    "3 7+",
+    334.49
+   ]
+  ]
+ },
+ "h15": {
+  "columns": [
+   "category",
+   "avg_review_score"
+  ],
+  "rows": [
+   [
+    "books_general_interest",
+    4.46
+   ],
+   [
+    "luggage_accessories",
+    4.33
+   ],
+   [
+    "stationery",
+    4.24
+   ],
+   [
+    "pet_shop",
+    4.24
+   ],
+   [
+    "perfumery",
+    4.2
+   ]
+  ]
+ },
+ "h16": {
+  "columns": [
+   "month",
+   "pct_late"
+  ],
+  "rows": [
+   [
+    1,
+    5.7
+   ],
+   [
+    2,
+    14.13
+   ],
+   [
+    3,
+    18.96
+   ],
+   [
+    4,
+    4.5
+   ],
+   [
+    5,
+    6.56
+   ],
+   [
+    6,
+    1.16
+   ],
+   [
+    7,
+    3.38
+   ],
+   [
+    8,
+    6.19
+   ]
+  ]
+ },
+ "h17": {
+  "columns": [
+   "seller_id"
+  ],
+  "rows": [
+   [
+    "6560211a19b47992c3666cc44a7e94c0"
+   ]
+  ]
+ },
+ "h18": {
+  "columns": [
+   "customer_state",
+   "revenue_per_customer"
+  ],
+  "rows": [
+   [
+    "PB",
+    222.62
+   ],
+   [
+    "AC",
+    207.57
+   ],
+   [
+    "AL",
+    201.29
+   ],
+   [
+    "AP",
+    201.11
+   ],
+   [
+    "RO",
+    196.72
+   ]
+  ]
+ },
+ "h19": {
+  "columns": [
+   "seller_state",
+   "avg_days_to_carrier"
+  ],
+  "rows": [
+   [
+    "PR",
+    3.05
+   ],
+   [
+    "RS",
+    3.02
+   ],
+   [
+    "SP",
+    2.8
+   ]
+  ]
+ },
+ "h20": {
+  "columns": [
+   "products"
+  ],
+  "rows": [
+   [
+    12292
+   ]
+  ]
+ },
+ "h21": {
+  "columns": [
+   "mismatched_orders"
+  ],
+  "rows": [
+   [
+    312
+   ]
+  ]
+ },
+ "h22": {
+  "columns": [
+   "day",
+   "revenue"
+  ],
+  "rows": [
+   [
+    "2017-11-24",
+    152653.74
+   ]
+  ]
+ },
+ "h23": {
+  "columns": [
+   "yoy_growth_pct"
+  ],
+  "rows": [
+   [
+    138.28
+   ]
+  ]
+ },
+ "h24": {
+  "columns": [
+   "grp",
+   "pct_one_star"
+  ],
+  "rows": [
+   [
+    "more_than_7_days_late",
+    69.68
+   ],
+   [
+    "on_time_or_early",
+    6.63
+   ]
+  ]
+ },
+ "h25": {
+  "columns": [
+   "category",
+   "customers"
+  ],
+  "rows": [
+   [
+    "bed_bath_table",
+    9145
+   ],
+   [
+    "health_beauty",
+    8678
+   ],
+   [
+    "sports_leisure",
+    7515
+   ],
+   [
+    "computers_accessories",
+    6557
+   ],
+   [
+    "furniture_decor",
+    6317
+   ]
+  ]
+ }
+}
