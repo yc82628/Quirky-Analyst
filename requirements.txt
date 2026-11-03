@@ -4,4 +4,6 @@ python-dotenv>=1.0
 pandas>=2.2
 streamlit>=1.38
 pytest>=8.0
-# LLM SDK: add the one you use, e.g. anthropic or openai
+anthropic>=2.0
+# installs src/text2sql so scripts, the app and tests can import it
+-e .

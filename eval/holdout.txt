@@ -1,0 +1,17 @@
+# Held-out eval ids: score these only for final numbers, never while tuning.
+# Picked once at random (seed 20261103): 4 easy, 5 medium, 5 hard, 1 clarify.
+e03
+e05
+e06
+e18
+m02
+m05
+m07
+m17
+m20
+h09
+h17
+h22
+h23
+h24
+c05
