@@ -1,8 +1,9 @@
 import json
+from dataclasses import replace
 
 import pytest
 
-from text2sql.agents import build_agent
+from text2sql.agents import build_agent, tool_agent
 from text2sql.agents.baseline import extract_sql
 from text2sql.tools import ToolBox
 from text2sql.trace import Tracer
@@ -49,9 +50,85 @@ def test_traces_are_written(settings, con, fake_llm, tmp_path):
     assert [json.loads(line)["qid"] for line in lines] == ["e01", "e01"]
 
 
-def test_tool_agent_is_a_stub_for_now(settings, con, fake_llm):
+GOOD_SQL = "SELECT COUNT(DISTINCT customer_unique_id) AS n FROM customers"
+
+
+def test_tool_agent_explores_then_answers(settings, con, fake_llm):
+    llm = fake_llm(
+        [("list_tables", {})],
+        [("describe_table", {"table": "customers"})],
+        [("run_sql", {"sql": GOOD_SQL})],
+        "There are 2 distinct customers.",
+    )
+    r = build_agent("tools", settings, llm=llm, con=con).answer("How many customers?", question_id="t1")
+
+    assert r.rows == [(2,)] and r.sql == GOOD_SQL and r.error is None
+    assert r.text == "There are 2 distinct customers."
+    assert r.retries == 0 and r.input_tokens == 400 and r.cost_usd == pytest.approx(0.004)
+    assert "customer_unique_id VARCHAR" not in llm.calls[0]["system"]  # schema comes from tools, not the prompt
+    assert {t["name"] for t in llm.calls[0]["tools"]} == {"list_tables", "describe_table", "sample_rows", "run_sql"}
+    reply = llm.calls[1]["messages"][-1]["content"][0]
+    assert reply["type"] == "tool_result" and reply["tool_use_id"] == "t1_0"
+    assert "orders" in reply["content"]
+    assert [s["kind"] for s in r.steps] == ["llm", "tool", "llm", "tool", "llm", "tool", "llm"]
+
+
+def test_tool_agent_revises_after_an_error(settings, con, fake_llm):
+    llm = fake_llm([("run_sql", {"sql": "SELECT * FROM nope"})], [("run_sql", {"sql": GOOD_SQL})], "2 customers.")
+    r = build_agent("tools", settings, llm=llm, con=con).answer("How many customers?")
+
+    assert r.rows == [(2,)] and r.error is None and r.retries == 1
+    error_reply = llm.calls[1]["messages"][-1]["content"][0]
+    assert error_reply["is_error"] is True and "nope" in error_reply["content"]
+    assert "3 revisions left" in error_reply["content"]
+
+
+def test_tool_agent_flags_empty_results(settings, con, fake_llm):
+    empty = "SELECT * FROM orders WHERE order_status = 'Delivered'"
+    llm = fake_llm([("run_sql", {"sql": empty})], [("run_sql", {"sql": GOOD_SQL})], "Done.")
+    r = build_agent("tools", settings, llm=llm, con=con).answer("?")
+
+    note = llm.calls[1]["messages"][-1]["content"][0]
+    assert note["is_error"] is False and "No rows returned" in note["content"]
+    assert r.retries == 1
+
+
+def test_tool_agent_stops_after_max_retries(settings, con, fake_llm):
+    bad = [("run_sql", {"sql": "SELECT * FROM nope"})]
+    llm = fake_llm(bad, bad, bad)
+    r = build_agent("tools", replace(settings, max_retries=1), llm=llm, con=con).answer("?")
+
+    assert len(llm.calls) == 2  # first try + one revision, then stop
+    assert r.retries == 1 and "nope" in r.error
+
+
+def test_tool_agent_step_limit(settings, con, fake_llm, monkeypatch):
+    monkeypatch.setattr(tool_agent, "MAX_LLM_CALLS", 2)
+    llm = fake_llm([("list_tables", {})], [("list_tables", {})], [("list_tables", {})])
+    r = build_agent("tools", settings, llm=llm, con=con).answer("?")
+    assert r.error == "step limit" and len(llm.calls) == 2
+
+
+def test_tool_agent_without_sql_keeps_the_text(settings, con, fake_llm):
+    llm = fake_llm("Do you mean best by revenue or by number of orders?")
+    r = build_agent("tools", settings, llm=llm, con=con).answer("Who are our best customers?")
+    assert r.sql is None and r.error == "no SQL run" and "revenue" in r.text
+
+
+def test_tool_agent_metrics_config(settings, con, fake_llm):
+    llm = fake_llm([("get_metric", {"name": "revenue"})], "Revenue excludes freight.")
+    r = build_agent("tools+metrics", settings, llm=llm, con=con).answer("What counts as revenue?")
+
+    assert {"search_metrics", "get_metric"} <= {t["name"] for t in llm.calls[0]["tools"]}
+    assert "search_metrics" in llm.calls[0]["system"]
+    assert "freight" in llm.calls[1]["messages"][-1]["content"][0]["content"]
+    assert r.error == "no SQL run"
+
+
+@pytest.mark.parametrize("name", ["tools+metrics+examples", "tools+metrics+examples+checker"])
+def test_unbuilt_configs_fail_loudly(settings, con, fake_llm, name):
     with pytest.raises(NotImplementedError):
-        build_agent("tools", settings, llm=fake_llm(), con=con).answer("?")
+        build_agent(name, settings, llm=fake_llm(), con=con)
 
 
 def test_toolbox_dispatch(settings, con):

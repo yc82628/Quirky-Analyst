@@ -7,7 +7,7 @@ import pytest
 
 from text2sql.config import ROOT, load_settings
 from text2sql.db import connect
-from text2sql.llm import LLMResponse
+from text2sql.llm import LLMResponse, ToolCall
 
 
 @pytest.fixture
@@ -35,19 +35,29 @@ def settings(db_path):
 
 
 class FakeLLM:
-    """Returns canned responses in order and records every call."""
+    """Returns canned responses in order and records every call.
+
+    Each response is a text reply, or a list of (tool_name, input) tool calls.
+    """
 
     model = "fake"
 
-    def __init__(self, *texts: str):
-        self.texts = list(texts)
+    def __init__(self, *replies):
+        self.replies = list(replies)
         self.calls = []
 
     def chat(self, messages, tools=None, system=None) -> LLMResponse:
-        self.calls.append({"messages": messages, "tools": tools, "system": system})
-        text = self.texts.pop(0)
-        return LLMResponse(text=text, model=self.model, input_tokens=100, output_tokens=20,
-                           cost_usd=0.001, assistant_message={"role": "assistant", "content": text})
+        self.calls.append({"messages": list(messages), "tools": tools, "system": system})
+        reply = self.replies.pop(0)
+        if isinstance(reply, str):
+            text, tool_calls, content = reply, [], reply
+        else:
+            text = ""
+            tool_calls = [ToolCall(f"t{len(self.calls)}_{i}", name, args) for i, (name, args) in enumerate(reply)]
+            content = [{"type": "tool_use", "id": c.id, "name": c.name, "input": c.input} for c in tool_calls]
+        return LLMResponse(text=text, tool_calls=tool_calls, stop_reason="tool_use" if tool_calls else "end_turn",
+                           model=self.model, input_tokens=100, output_tokens=20, cost_usd=0.001,
+                           assistant_message={"role": "assistant", "content": content})
 
 
 @pytest.fixture

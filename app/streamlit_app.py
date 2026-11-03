@@ -40,7 +40,7 @@ st.caption("Ask a business question about the Olist Brazilian e-commerce data.")
 
 with st.sidebar:
     agent_name = st.selectbox("Agent", list(EXPERIMENTS), index=0)
-    st.caption("Only `baseline` is implemented so far.")
+    st.caption("`baseline`, `tools` and `tools+metrics` work; the examples bank and checker aren't built yet.")
 
 question = st.text_input("Question", placeholder="Which product categories earn the most revenue?")
 if st.button("Ask", type="primary") and question.strip():
